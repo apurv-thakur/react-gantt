@@ -4205,6 +4205,20 @@ var viewTypeList = [{
   label: 'Half-Year View',
   value: 115200
 }];
+var MONTHS = {
+  '01': 'January',
+  '02': 'February',
+  '03': 'March',
+  '04': 'April',
+  '05': 'May',
+  '06': 'June',
+  '07': 'July',
+  '08': 'August',
+  '09': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December'
+};
 
 function isRestDay(date) {
   var calc = [0, 6];
@@ -4578,7 +4592,7 @@ var GanttStore = /*#__PURE__*/function () {
     key: "getMajorList",
     value: function getMajorList() {
       var majorFormatMap = {
-        day: 'YYYY MM',
+        day: "MM ".concat(MONTHS['MM'], " YYYY"),
         week: 'YYYY MM',
         month: 'YYYY',
         quarter: 'YYYY',
@@ -4650,7 +4664,7 @@ var GanttStore = /*#__PURE__*/function () {
 
       var minorFormatMap = {
         day: 'YYYY-MM-D',
-        week: 'YYYY-w周',
+        week: 'YYYY-w week(s)',
         month: 'YYYY-MM月',
         quarter: 'YYYY-第Q季',
         halfYear: 'YYYY-'
