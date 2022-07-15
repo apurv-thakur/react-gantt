@@ -26,27 +26,27 @@ export const ONE_DAY_MS = 86400000
 export const viewTypeList: Gantt.SightConfig[] = [
   {
     type: 'day',
-    label: '日视图',
+    label: 'Day View',
     value: 2880,
   },
   {
     type: 'week',
-    label: '周视图',
+    label: 'Week View',
     value: 3600,
   },
   {
     type: 'month',
-    label: '月视图',
+    label: 'Month View',
     value: 14400,
   },
   {
     type: 'quarter',
-    label: '季视图',
+    label: 'Quarter View',
     value: 86400,
   },
   {
     type: 'halfYear',
-    label: '年视图',
+    label: 'Half-Year View',
     value: 115200,
   },
 ]
@@ -328,11 +328,11 @@ class GanttStore {
 
   getMajorList(): Gantt.Major[] {
     const majorFormatMap: { [key in Gantt.Sight]: string } = {
-      day: 'YYYY年MM月',
-      week: 'YYYY年MM月',
-      month: 'YYYY年',
-      quarter: 'YYYY年',
-      halfYear: 'YYYY年',
+      day: 'YYYY MM',
+      week: 'YYYY MM',
+      month: 'YYYY',
+      quarter: 'YYYY',
+      halfYear: 'YYYY',
     }
     const { translateAmp } = this
     const endAmp = translateAmp + this.getDurationAmp()
