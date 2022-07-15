@@ -4205,20 +4205,6 @@ var viewTypeList = [{
   label: 'Half-Year View',
   value: 115200
 }];
-var MONTHS = {
-  '01': 'January',
-  '02': 'February',
-  '03': 'March',
-  '04': 'April',
-  '05': 'May',
-  '06': 'June',
-  '07': 'July',
-  '08': 'August',
-  '09': 'September',
-  '10': 'October',
-  '11': 'November',
-  '12': 'December'
-};
 
 function isRestDay(date) {
   var calc = [0, 6];
@@ -4592,8 +4578,8 @@ var GanttStore = /*#__PURE__*/function () {
     key: "getMajorList",
     value: function getMajorList() {
       var majorFormatMap = {
-        day: "MM ".concat(MONTHS['MM'], " YYYY"),
-        week: 'YYYY MM',
+        day: "MM-YYYY",
+        week: 'MM-YYYY',
         month: 'YYYY',
         quarter: 'YYYY',
         halfYear: 'YYYY'
@@ -4664,9 +4650,9 @@ var GanttStore = /*#__PURE__*/function () {
 
       var minorFormatMap = {
         day: 'YYYY-MM-D',
-        week: 'YYYY-w week(s)',
-        month: 'YYYY-MM月',
-        quarter: 'YYYY-第Q季',
+        week: 'YYYY-w',
+        month: 'YYYY-MM',
+        quarter: 'YYYY-Q',
         halfYear: 'YYYY-'
       };
       var fstHalfYear = new Set([0, 1, 2, 3, 4, 5]);
@@ -4740,7 +4726,7 @@ var GanttStore = /*#__PURE__*/function () {
       };
 
       var getMinorKey = function getMinorKey(date) {
-        if (_this2.sightConfig.type === 'halfYear') return date.format(format) + (fstHalfYear.has(date.month()) ? '上半年' : '下半年');
+        if (_this2.sightConfig.type === 'halfYear') return date.format(format) + (fstHalfYear.has(date.month()) ? 'First half' : 'Second half');
         return date.format(format);
       }; // 初始化当前时间
 
@@ -6009,7 +5995,7 @@ var SelectionIndicator = function SelectionIndicator() {
 
 var SelectionIndicator$1 = observer(SelectionIndicator);
 
-var css_248z$b = ".gantt-time-axis-scale-select .next-menu {\n  position: relative;\n  min-width: 150px;\n  padding: 4px 0;\n  margin: 0;\n  list-style: none;\n  border-radius: 4px;\n  background: #fff;\n  line-height: 36px;\n  font-size: 14px;\n}\n.gantt-time-axis-scale-select .next-menu,\n.gantt-time-axis-scale-select .next-menu *,\n.gantt-time-axis-scale-select .next-menu :after,\n.gantt-time-axis-scale-select .next-menu :before {\n  box-sizing: border-box;\n}\n.gantt-time-axis-scale-select .next-menu,\n.gantt-time-axis-scale-select .next-select-trigger,\n.gantt-time-axis-scale-select .next-select .next-select-inner {\n  min-width: unset;\n}\n.gantt-time-axis-scale-select .next-menu-item-text {\n  line-height: 36px;\n}\n.time-axis-scale-select__3fTI .next-menu-item-text {\n  line-height: 36px;\n}\n.gantt-shadow {\n  position: absolute;\n  top: 4px;\n  right: 0;\n  width: 90px;\n  height: 48px;\n  z-index: 0;\n  transition: box-shadow 0.5s;\n}\n.gantt-shadow.gantt-scrolling {\n  box-shadow: -3px 0 7px 0 #e5e5e5;\n}\n.gantt-trigger {\n  position: absolute;\n  top: 0;\n  right: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 56px;\n  border-top-right-radius: 4px;\n  background-color: #fff;\n  border-left: 1px solid #f0f0f0;\n  color: #bfbfbf;\n  padding: 0 8px 0 12px;\n  cursor: pointer;\n  width: 90px;\n  z-index: 1;\n  transition: color 0.2s;\n}\n.gantt-trigger:hover {\n  color: #8c8c8c;\n}\n.gantt-trigger:hover .gantt-text {\n  color: #262626;\n}\n.gantt-trigger .gantt-text {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin-right: 4px;\n  font-size: 14px;\n  color: #202d40;\n}\n.dropdown-icon {\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n}\n.dropdown-icon svg {\n  fill: currentColor;\n}\n.next-overlay-wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n}\n.next-overlay-wrapper .next-overlay-inner {\n  z-index: 1001;\n  border-radius: 4px;\n  box-shadow: 0 12px 32px 0 rgba(38, 38, 38, 0.16);\n  -webkit-transform: translateZ(0);\n  transform: translateZ(0);\n}\n.next-overlay-wrapper .next-overlay-backdrop {\n  position: fixed;\n  z-index: 1001;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  transition: opacity 0.3s;\n  opacity: 0;\n}\n.next-overlay-wrapper.opened .next-overlay-backdrop {\n  opacity: 0.3;\n}\n.next-menu-item {\n  position: relative;\n  padding: 0 12px 0 40px;\n  transition: background 0.2s ease;\n  color: #262626;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n}\n.next-menu-item .gantt-selected_icon {\n  position: absolute;\n  left: 12px;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n}\n.next-menu-item .gantt-selected_icon svg {\n  fill: #1b9aee;\n}\n.next-menu-item:hover {\n  font-weight: 400;\n  background-color: #f7f7f7;\n}\n.next-menu-item.next-selected {\n  color: #262626;\n  background-color: #fff;\n}\n.next-menu-item.next-selected .next-menu-icon-arrow {\n  color: #bfbfbf;\n}\n";
+var css_248z$b = ".gantt-time-axis-scale-select .next-menu {\n  position: relative;\n  min-width: 150px;\n  padding: 4px 0;\n  margin: 0;\n  list-style: none;\n  border-radius: 4px;\n  background: #fff;\n  line-height: 36px;\n  font-size: 14px;\n}\n.gantt-time-axis-scale-select .next-menu,\n.gantt-time-axis-scale-select .next-menu *,\n.gantt-time-axis-scale-select .next-menu :after,\n.gantt-time-axis-scale-select .next-menu :before {\n  box-sizing: border-box;\n}\n.gantt-time-axis-scale-select .next-menu,\n.gantt-time-axis-scale-select .next-select-trigger,\n.gantt-time-axis-scale-select .next-select .next-select-inner {\n  min-width: unset;\n}\n.gantt-time-axis-scale-select .next-menu-item-text {\n  line-height: 36px;\n}\n.time-axis-scale-select__3fTI .next-menu-item-text {\n  line-height: 36px;\n}\n.gantt-shadow {\n  position: absolute;\n  top: 4px;\n  right: 0;\n  width: 116px;\n  height: 48px;\n  z-index: 0;\n  transition: box-shadow 0.5s;\n}\n.gantt-shadow.gantt-scrolling {\n  box-shadow: -3px 0 7px 0 #e5e5e5;\n}\n.gantt-trigger {\n  position: absolute;\n  top: 0;\n  right: 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 56px;\n  border-top-right-radius: 4px;\n  background-color: #fff;\n  border-left: 1px solid #f0f0f0;\n  color: #bfbfbf;\n  padding: 0 8px 0 12px;\n  cursor: pointer;\n  width: 116px;\n  z-index: 1;\n  transition: color 0.2s;\n}\n.gantt-trigger:hover {\n  color: #8c8c8c;\n}\n.gantt-trigger:hover .gantt-text {\n  color: #262626;\n}\n.gantt-trigger .gantt-text {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin-right: 4px;\n  font-size: 14px;\n  color: #202d40;\n}\n.dropdown-icon {\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n}\n.dropdown-icon svg {\n  fill: currentColor;\n}\n.next-overlay-wrapper {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n}\n.next-overlay-wrapper .next-overlay-inner {\n  z-index: 1001;\n  border-radius: 4px;\n  box-shadow: 0 12px 32px 0 rgba(38, 38, 38, 0.16);\n  -webkit-transform: translateZ(0);\n  transform: translateZ(0);\n}\n.next-overlay-wrapper .next-overlay-backdrop {\n  position: fixed;\n  z-index: 1001;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: #000;\n  transition: opacity 0.3s;\n  opacity: 0;\n}\n.next-overlay-wrapper.opened .next-overlay-backdrop {\n  opacity: 0.3;\n}\n.next-menu-item {\n  position: relative;\n  padding: 0 12px 0 40px;\n  transition: background 0.2s ease;\n  color: #262626;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n}\n.next-menu-item .gantt-selected_icon {\n  position: absolute;\n  left: 12px;\n  width: 20px;\n  height: 20px;\n  line-height: 20px;\n}\n.next-menu-item .gantt-selected_icon svg {\n  fill: #1b9aee;\n}\n.next-menu-item:hover {\n  font-weight: 400;\n  background-color: #f7f7f7;\n}\n.next-menu-item.next-selected {\n  color: #262626;\n  background-color: #fff;\n}\n.next-menu-item.next-selected .next-menu-icon-arrow {\n  color: #bfbfbf;\n}\n";
 styleInject(css_248z$b);
 
 var TimeAxisScaleSelect = function TimeAxisScaleSelect() {
@@ -6250,7 +6236,7 @@ var DragPresent = function DragPresent() {
 
 var DragPresent$1 = observer(DragPresent);
 
-var css_248z$8 = ".gantt-task-bar {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n}\n.gantt-task-bar-loading {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  cursor: not-allowed;\n  z-index: 9;\n}\n.gantt-task-bar-bar {\n  position: relative;\n  height: 8px;\n  line-height: 8px;\n  border-radius: 4px;\n  top: -1px;\n  cursor: pointer;\n}\n.gantt-task-bar-invalid-date-range {\n  display: none;\n}\n.gantt-task-bar-resize-bg {\n  position: absolute;\n  left: 0;\n  top: -5px;\n  border-radius: 4px;\n  box-shadow: 0 2px 4px 0 #f7f7f7;\n  border: 1px solid #f0f0f0;\n  background-color: #fff;\n}\n.gantt-task-bar-resize-bg-compact {\n  height: 17px;\n}\n.gantt-task-bar-resize-handle {\n  position: absolute;\n  left: 0;\n  top: -4px;\n  width: 14px;\n  height: 16px;\n  z-index: 3;\n  background: white;\n}\n.gantt-task-bar-resize-handle:after,\n.gantt-task-bar-resize-handle:before {\n  position: absolute;\n  top: 4px;\n  bottom: 16px;\n  width: 2px;\n  height: 8px;\n  border-radius: 2px;\n  background-color: #d9d9d9;\n  content: '';\n}\n.gantt-task-bar-resize-handle-disabled {\n  cursor: not-allowed !important;\n}\n.gantt-task-bar-resize-handle-left {\n  cursor: col-resize;\n}\n.gantt-task-bar-resize-handle-left:before {\n  left: 4px;\n}\n.gantt-task-bar-resize-handle-left:after {\n  right: 4px;\n}\n.gantt-task-bar-resize-handle-right {\n  cursor: col-resize;\n}\n.gantt-task-bar-resize-handle-right:before {\n  left: 4px;\n}\n.gantt-task-bar-resize-handle-right:after {\n  right: 4px;\n}\n.gantt-task-bar-date-text {\n  color: #262626;\n}\n.gantt-task-bar-date-text,\n.gantt-task-bar-label {\n  position: absolute;\n  white-space: nowrap;\n  font-size: 12px;\n  top: -6px;\n}\n.gantt-task-bar-label {\n  display: none;\n  overflow: hidden;\n  max-width: 200px;\n  color: #595959;\n  text-overflow: ellipsis;\n  word-break: keep-all;\n  line-height: 16px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  height: 16px;\n  cursor: pointer;\n  top: -14px;\n}\n";
+var css_248z$8 = ".gantt-task-bar {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: flex;\n}\n.gantt-task-bar-loading {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  cursor: not-allowed;\n  z-index: 9;\n}\n.gantt-task-bar-bar {\n  position: relative;\n  height: 8px;\n  line-height: 8px;\n  border-radius: 4px;\n  top: -1px;\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.gantt-task-bar-invalid-date-range {\n  display: none;\n}\n.gantt-task-bar-resize-bg {\n  position: absolute;\n  left: 0;\n  top: -5px;\n  border-radius: 4px;\n  box-shadow: 0 2px 4px 0 #f7f7f7;\n  border: 1px solid #f0f0f0;\n  background-color: #fff;\n}\n.gantt-task-bar-resize-bg-compact {\n  height: 17px;\n}\n.gantt-task-bar-resize-handle {\n  position: absolute;\n  left: 0;\n  top: -4px;\n  width: 14px;\n  height: 16px;\n  z-index: 3;\n  background: white;\n}\n.gantt-task-bar-resize-handle:after,\n.gantt-task-bar-resize-handle:before {\n  position: absolute;\n  top: 4px;\n  bottom: 16px;\n  width: 2px;\n  height: 8px;\n  border-radius: 2px;\n  background-color: #d9d9d9;\n  content: '';\n}\n.gantt-task-bar-resize-handle-disabled {\n  cursor: not-allowed !important;\n}\n.gantt-task-bar-resize-handle-left {\n  cursor: col-resize;\n}\n.gantt-task-bar-resize-handle-left:before {\n  left: 4px;\n}\n.gantt-task-bar-resize-handle-left:after {\n  right: 4px;\n}\n.gantt-task-bar-resize-handle-right {\n  cursor: col-resize;\n}\n.gantt-task-bar-resize-handle-right:before {\n  left: 4px;\n}\n.gantt-task-bar-resize-handle-right:after {\n  right: 4px;\n}\n.gantt-task-bar-date-text {\n  color: #262626;\n}\n.gantt-task-bar-date-text,\n.gantt-task-bar-label {\n  position: absolute;\n  white-space: nowrap;\n  font-size: 12px;\n  top: -6px;\n}\n.gantt-task-bar-label {\n  display: none;\n  overflow: hidden;\n  max-width: 200px;\n  color: #595959;\n  text-overflow: ellipsis;\n  word-break: keep-all;\n  line-height: 16px;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  height: 16px;\n  cursor: pointer;\n  top: -14px;\n}\n";
 styleInject(css_248z$8);
 
 var TaskBar = function TaskBar(_ref) {

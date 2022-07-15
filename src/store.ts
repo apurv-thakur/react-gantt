@@ -342,8 +342,8 @@ class GanttStore {
 
   getMajorList(): Gantt.Major[] {
     const majorFormatMap: { [key in Gantt.Sight]: string } = {
-      day: `MM ${MONTHS.MM} YYYY`,
-      week: 'YYYY MM',
+      day: 'MM-YYYY',
+      week: 'MM-YYYY',
       month: 'YYYY',
       quarter: 'YYYY',
       halfYear: 'YYYY',
@@ -418,9 +418,9 @@ class GanttStore {
   getMinorList(): Gantt.Minor[] {
     const minorFormatMap = {
       day: 'YYYY-MM-D',
-      week: 'YYYY-w week(s)',
-      month: 'YYYY-MM月',
-      quarter: 'YYYY-第Q季',
+      week: 'YYYY-w',
+      month: 'YYYY-MM',
+      quarter: 'YYYY-Q',
       halfYear: 'YYYY-',
     }
     const fstHalfYear = new Set([0, 1, 2, 3, 4, 5])
@@ -499,7 +499,7 @@ class GanttStore {
     }
     const getMinorKey = (date: Dayjs) => {
       if (this.sightConfig.type === 'halfYear')
-        return date.format(format) + (fstHalfYear.has(date.month()) ? '上半年' : '下半年')
+        return date.format(format) + (fstHalfYear.has(date.month()) ? 'First half' : 'Second half')
 
       return date.format(format)
     }
