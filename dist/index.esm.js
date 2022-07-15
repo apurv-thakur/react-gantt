@@ -6120,7 +6120,7 @@ var TimeIndicator = function TimeIndicator() {
       right: right,
       display: display
     }
-  }, /*#__PURE__*/React.createElement("span", null, "\u4ECA\u5929"));
+  }, /*#__PURE__*/React.createElement("span", null, "Today"));
 };
 
 var TimeIndicator$1 = observer(TimeIndicator);
