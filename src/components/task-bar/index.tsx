@@ -252,7 +252,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
       </div>
       {(allowDrag || disabled || alwaysShowTaskBar) && (
         <div className={`${prefixClsTaskBar}-label`} style={{ left: width / 2 - 10 }}>
-          {getDateWidth(translateX + width + moveCalc, translateX)}天
+          {getDateWidth(translateX + width + moveCalc, translateX)} day(s)
         </div>
       )}
       {(stepGesture === 'moving' || allowDrag || alwaysShowTaskBar) && (
