@@ -23,7 +23,7 @@ const TableRows = () => {
           marginTop: 30,
         }}
       >
-        暂无数据
+        No data. Please select the relevant data column.
       </div>
     )
   }
