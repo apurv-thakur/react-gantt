@@ -5694,9 +5694,10 @@ var TimeAxis = function TimeAxis() {
     return type === 'day' && isToday(key);
   }, [sightConfig, isToday]);
   useEffect(function () {
-    Array.from(document.querySelectorAll(".".concat(prefixClsTimeAxis, "-minor-label.").concat(prefixClsTimeAxis, "-today"))).forEach(function (el) {
-      return el.style.background = store.themeColor;
-    });
+    for (var _i = 0, _Array$from = Array.from(document.querySelectorAll(".".concat(prefixClsTimeAxis, "-minor-label.").concat(prefixClsTimeAxis, "-today"))); _i < _Array$from.length; _i++) {
+      var el = _Array$from[_i];
+      el.style.background = store.themeColor;
+    }
   }, [store.themeColor, minorList]);
   return /*#__PURE__*/React.createElement(DragResize$1, {
     onResize: handleResize,
@@ -6108,38 +6109,31 @@ styleInject(css_248z$a);
 
 var TimeIndicator = function TimeIndicator() {
   var _useContext = useContext(context),
-      store = _useContext.store,
-      prefixCls = _useContext.prefixCls;
+      store = _useContext.store;
 
-  var scrolling = store.scrolling,
-      translateX = store.translateX,
-      tableWidth = store.tableWidth,
+  var translateX = store.translateX,
       viewWidth = store.viewWidth,
       todayTranslateX = store.todayTranslateX;
-  var prefixClsTimeIndicator = "".concat(prefixCls, "-time-indicator");
-  var type = todayTranslateX < translateX ? 'left' : 'right';
-  var left = type === 'left' ? tableWidth : 'unset';
-  var right = type === 'right' ? 111 : 'unset';
-  var display = useMemo(function () {
+  useMemo(function () {
     var isOverLeft = todayTranslateX < translateX;
     var isOverRight = todayTranslateX > translateX + viewWidth;
     return isOverLeft || isOverRight ? 'block' : 'none';
   }, [todayTranslateX, translateX, viewWidth]);
-  var handleClick = useCallback(function () {
+  useCallback(function () {
     store.scrollToToday();
   }, [store]);
-  return /*#__PURE__*/React.createElement("button", {
-    onClick: handleClick,
-    className: classNames(prefixClsTimeIndicator, _defineProperty({}, "".concat(prefixClsTimeIndicator, "-scrolling"), scrolling)),
-    type: 'button',
-    "data-role": 'button',
-    style: {
-      left: left,
-      right: right,
-      display: display,
-      background: store.themeColor
-    }
-  }, /*#__PURE__*/React.createElement("span", null, "Today"));
+  return /*#__PURE__*/React.createElement(React.Fragment, null) // <button
+  //   onClick={handleClick}
+  //   className={classNames(prefixClsTimeIndicator, {
+  //     [`${prefixClsTimeIndicator}-scrolling`]: scrolling,
+  //   })}
+  //   type='button'
+  //   data-role='button'
+  //   style={{ left, right, display, background: store.themeColor }}
+  // >
+  //   <span>Today</span>
+  // </button>
+  ;
 };
 
 var TimeIndicator$1 = observer(TimeIndicator);

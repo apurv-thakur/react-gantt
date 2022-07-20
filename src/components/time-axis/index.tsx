@@ -32,7 +32,10 @@ const TimeAxis: React.FC = () => {
   )
 
   useEffect(() => {
-    for (const el of ([...document.querySelectorAll(`.${prefixClsTimeAxis}-minor-label.${prefixClsTimeAxis}-today`)] as HTMLElement[])) (el.style.background = store.themeColor)
+    for (const el of [
+      ...document.querySelectorAll(`.${prefixClsTimeAxis}-minor-label.${prefixClsTimeAxis}-today`),
+    ] as HTMLElement[])
+      el.style.background = store.themeColor
   }, [store.themeColor, minorList])
 
   return (

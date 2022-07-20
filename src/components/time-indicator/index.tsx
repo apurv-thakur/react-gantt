@@ -20,17 +20,18 @@ const TimeIndicator: React.FC = () => {
     store.scrollToToday()
   }, [store])
   return (
-    <button
-      onClick={handleClick}
-      className={classNames(prefixClsTimeIndicator, {
-        [`${prefixClsTimeIndicator}-scrolling`]: scrolling,
-      })}
-      type='button'
-      data-role='button'
-      style={{ left, right, display, background: store.themeColor }}
-    >
-      <span>Today</span>
-    </button>
+    <></>
+    // <button
+    //   onClick={handleClick}
+    //   className={classNames(prefixClsTimeIndicator, {
+    //     [`${prefixClsTimeIndicator}-scrolling`]: scrolling,
+    //   })}
+    //   type='button'
+    //   data-role='button'
+    //   style={{ left, right, display, background: store.themeColor }}
+    // >
+    //   <span>Today</span>
+    // </button>
   )
 }
 export default observer(TimeIndicator)
