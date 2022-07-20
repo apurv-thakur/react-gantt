@@ -106,6 +106,8 @@ class GanttStore {
 
   @observable tableWidth: number
 
+  @observable themeColor: string
+
   @observable viewWidth: number
 
   @observable width: number
@@ -185,6 +187,11 @@ class GanttStore {
   @action
   setOnUpdate(onUpdate: GanttProperties['onUpdate']) {
     this.onUpdate = onUpdate
+  }
+
+  @action
+  setThemeColor(themeColor: string) {
+    this.themeColor = themeColor
   }
 
   @action

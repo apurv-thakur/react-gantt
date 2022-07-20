@@ -39,6 +39,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   onUpdate: (record: Gantt.Record<RecordType>, startDate: string, endDate: string) => Promise<boolean>
   startDateKey?: string
   endDateKey?: string
+  themeColor: string
   isRestDay?: (date: string) => boolean
   unit?: Gantt.Sight
   rowHeight?: number
@@ -74,6 +75,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     onUpdate,
     startDateKey = 'startDate',
     endDateKey = 'endDate',
+    themeColor = '#5950A8',
     isRestDay,
     getBarColor,
     showBackToday = true,
@@ -112,6 +114,10 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
   }, [dependencies, store])
 
   useEffect(() => {
+    store.setThemeColor(themeColor)
+  }, [themeColor, store])
+
+  useEffect(() => {
     if (isRestDay) store.setIsRestDay(isRestDay)
   }, [isRestDay, store])
   useEffect(() => {
@@ -131,6 +137,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       showUnitSwitch,
       onRow,
       tableIndent,
+      themeColor,
       expandIcon,
       renderBar,
       renderInvalidBar,
@@ -152,6 +159,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       showUnitSwitch,
       onRow,
       tableIndent,
+      themeColor,
       expandIcon,
       renderBar,
       renderInvalidBar,

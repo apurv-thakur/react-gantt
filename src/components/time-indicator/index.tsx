@@ -27,7 +27,7 @@ const TimeIndicator: React.FC = () => {
       })}
       type='button'
       data-role='button'
-      style={{ left, right, display }}
+      style={{ left, right, display, background: store.themeColor }}
     >
       <span>Today</span>
     </button>

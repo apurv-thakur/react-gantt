@@ -10,6 +10,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
     onUpdate: (record: Gantt.Record<RecordType>, startDate: string, endDate: string) => Promise<boolean>;
     startDateKey?: string;
     endDateKey?: string;
+    themeColor: string;
     isRestDay?: (date: string) => boolean;
     unit?: Gantt.Sight;
     rowHeight?: number;

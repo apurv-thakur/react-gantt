@@ -21,6 +21,7 @@ declare class GanttStore {
     scrollTop: number;
     collapse: boolean;
     tableWidth: number;
+    themeColor: string;
     viewWidth: number;
     width: number;
     height: number;
@@ -49,6 +50,7 @@ declare class GanttStore {
     toggleCollapse(): void;
     setRowCollapse(item: Gantt.Item, collapsed: boolean): void;
     setOnUpdate(onUpdate: GanttProperties['onUpdate']): void;
+    setThemeColor(themeColor: string): void;
     setColumns(columns: Gantt.Column[]): void;
     setDependencies(dependencies: Gantt.Dependence[]): void;
     handlePanMove(translateX: number): void;

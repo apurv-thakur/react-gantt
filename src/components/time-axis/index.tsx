@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import classNames from 'classnames'
 import DragResize from '../drag-resize'
@@ -30,6 +30,10 @@ const TimeAxis: React.FC = () => {
     },
     [sightConfig, isToday]
   )
+
+  useEffect(() => {
+    for (const el of ([...document.querySelectorAll(`.${prefixClsTimeAxis}-minor-label.${prefixClsTimeAxis}-today`)] as HTMLElement[])) (el.style.background = store.themeColor)
+  }, [store.themeColor, minorList])
 
   return (
     <DragResize

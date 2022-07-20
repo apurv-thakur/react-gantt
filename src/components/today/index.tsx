@@ -16,6 +16,7 @@ const Today: React.FC = () => {
         className={`${prefixCls}-today_line`}
         style={{
           height: store.bodyScrollHeight,
+          background: store.themeColor,
         }}
       />
     </div>

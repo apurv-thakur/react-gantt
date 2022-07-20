@@ -4393,6 +4393,11 @@ var GanttStore = /*#__PURE__*/function () {
       this.onUpdate = onUpdate;
     }
   }, {
+    key: "setThemeColor",
+    value: function setThemeColor(themeColor) {
+      this.themeColor = themeColor;
+    }
+  }, {
     key: "setColumns",
     value: function setColumns(columns) {
       this.columns = columns;
@@ -5069,6 +5074,8 @@ __decorate([observable], GanttStore.prototype, "collapse", void 0);
 
 __decorate([observable], GanttStore.prototype, "tableWidth", void 0);
 
+__decorate([observable], GanttStore.prototype, "themeColor", void 0);
+
 __decorate([observable], GanttStore.prototype, "viewWidth", void 0);
 
 __decorate([observable], GanttStore.prototype, "width", void 0);
@@ -5098,6 +5105,8 @@ __decorate([action], GanttStore.prototype, "toggleCollapse", null);
 __decorate([action], GanttStore.prototype, "setRowCollapse", null);
 
 __decorate([action], GanttStore.prototype, "setOnUpdate", null);
+
+__decorate([action], GanttStore.prototype, "setThemeColor", null);
 
 __decorate([action], GanttStore.prototype, "setColumns", null);
 
@@ -5680,6 +5689,11 @@ var TimeAxis = function TimeAxis() {
     var type = sightConfig.type;
     return type === 'day' && isToday(key);
   }, [sightConfig, isToday]);
+  useEffect(function () {
+    Array.from(document.querySelectorAll(".".concat(prefixClsTimeAxis, "-minor-label.").concat(prefixClsTimeAxis, "-today"))).forEach(function (el) {
+      return el.style.background = store.themeColor;
+    });
+  }, [store.themeColor, minorList]);
   return /*#__PURE__*/React.createElement(DragResize$1, {
     onResize: handleResize,
     onResizeEnd: handleLeftResizeEnd,
@@ -5833,7 +5847,7 @@ var TableRows = function TableRows() {
         color: ' rgba(0,0,0,0.65)',
         marginTop: 30
       }
-    }, "\u6682\u65E0\u6570\u636E");
+    }, "No data. Please select the relevant data column.");
   }
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, barList.slice(start, start + count).map(function (bar, rowIndex) {
@@ -6118,7 +6132,8 @@ var TimeIndicator = function TimeIndicator() {
     style: {
       left: left,
       right: right,
-      display: display
+      display: display,
+      background: store.themeColor
     }
   }, /*#__PURE__*/React.createElement("span", null, "Today"));
 };
@@ -6730,7 +6745,8 @@ var Today = function Today() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "".concat(prefixCls, "-today_line"),
     style: {
-      height: store.bodyScrollHeight
+      height: store.bodyScrollHeight,
+      background: store.themeColor
     }
   }));
 };
@@ -6918,26 +6934,31 @@ var Chart = function Chart() {
     strokeWidth: '1px',
     y2: '10'
   }))), minorList.map(function (item) {
-    return item.isWeek ? /*#__PURE__*/React.createElement("g", {
-      key: item.key,
-      stroke: '#f0f0f0'
-    }, /*#__PURE__*/React.createElement("path", {
-      d: "M".concat(item.left, ",0 L").concat(item.left, ",").concat(bodyScrollHeight)
-    }), /*#__PURE__*/React.createElement("rect", {
-      fill: 'url(#repeat)',
-      opacity: '0.5',
-      strokeWidth: '0',
-      x: item.left,
-      y: 0,
-      width: item.width,
-      height: bodyScrollHeight
-    })) : /*#__PURE__*/React.createElement("g", {
-      key: item.key,
-      stroke: '#f0f0f0'
-    }, /*#__PURE__*/React.createElement("path", {
-      d: "M".concat(item.left, ",0 L").concat(item.left, ",").concat(bodyScrollHeight)
-    }));
-  }), /*#__PURE__*/React.createElement(DragPresent$1, null), /*#__PURE__*/React.createElement(Dependencies$1, null)), /*#__PURE__*/React.createElement("div", {
+    return (
+      /*#__PURE__*/
+      // item.isWeek ? (
+      //   <g key={item.key} stroke='#f0f0f0'>
+      //     <path d={`M${item.left},0 L${item.left},${bodyScrollHeight}`} />
+      //     <rect
+      //       fill='url(#repeat)'
+      //       opacity='0.5'
+      //       strokeWidth='0'
+      //       x={item.left}
+      //       y={0}
+      //       width={item.width}
+      //       height={bodyScrollHeight}
+      //     />
+      //   </g>
+      // ) : (
+      React.createElement("g", {
+        key: item.key,
+        stroke: '#f0f0f0'
+      }, /*#__PURE__*/React.createElement("path", {
+        d: "M".concat(item.left, ",0 L").concat(item.left, ",").concat(bodyScrollHeight)
+      }))
+    );
+  } // )
+  ), /*#__PURE__*/React.createElement(DragPresent$1, null), /*#__PURE__*/React.createElement(Dependencies$1, null)), /*#__PURE__*/React.createElement("div", {
     className: "".concat(prefixCls, "-render-chunk"),
     style: {
       height: bodyScrollHeight,
@@ -7010,6 +7031,8 @@ var GanttComponent = function GanttComponent(props) {
       startDateKey = _props$startDateKey === void 0 ? 'startDate' : _props$startDateKey,
       _props$endDateKey = props.endDateKey,
       endDateKey = _props$endDateKey === void 0 ? 'endDate' : _props$endDateKey,
+      _props$themeColor = props.themeColor,
+      themeColor = _props$themeColor === void 0 ? '#5950A8' : _props$themeColor,
       isRestDay = props.isRestDay,
       getBarColor = props.getBarColor,
       _props$showBackToday = props.showBackToday,
@@ -7059,6 +7082,9 @@ var GanttComponent = function GanttComponent(props) {
     store.setDependencies(dependencies);
   }, [dependencies, store]);
   useEffect(function () {
+    store.setThemeColor(themeColor);
+  }, [themeColor, store]);
+  useEffect(function () {
     if (isRestDay) store.setIsRestDay(isRestDay);
   }, [isRestDay, store]);
   useEffect(function () {
@@ -7081,6 +7107,7 @@ var GanttComponent = function GanttComponent(props) {
       showUnitSwitch: showUnitSwitch,
       onRow: onRow,
       tableIndent: tableIndent,
+      themeColor: themeColor,
       expandIcon: expandIcon,
       renderBar: renderBar,
       renderInvalidBar: renderInvalidBar,
@@ -7095,7 +7122,7 @@ var GanttComponent = function GanttComponent(props) {
       renderRightText: renderRightText,
       onExpand: onExpand
     };
-  }, [store, getBarColor, showBackToday, showUnitSwitch, onRow, tableIndent, expandIcon, renderBar, renderInvalidBar, renderGroupBar, onBarClick, tableCollapseAble, renderBarThumb, scrollTop, alwaysShowTaskBar, renderLeftText, renderRightText, onExpand]);
+  }, [store, getBarColor, showBackToday, showUnitSwitch, onRow, tableIndent, themeColor, expandIcon, renderBar, renderInvalidBar, renderGroupBar, onBarClick, tableCollapseAble, renderBarThumb, scrollTop, alwaysShowTaskBar, renderLeftText, renderRightText, onExpand]);
   return /*#__PURE__*/React.createElement(context.Provider, {
     value: ContextValue
   }, /*#__PURE__*/React.createElement(Body, null, /*#__PURE__*/React.createElement("header", null, /*#__PURE__*/React.createElement(TableHeader$1, null), /*#__PURE__*/React.createElement(TimeAxis$1, null)), /*#__PURE__*/React.createElement("main", {
