@@ -58,6 +58,7 @@ const Divider: React.FC = () => {
       {tableCollapseAble && (
         <div
           className={`${prefixClsDivider}-icon-wrapper`}
+          style={{ backgroundColor: store.themeColor, borderColor: store.themeColor }}
           role='none'
           onMouseDown={e => e.stopPropagation()}
           onClick={handleClick}

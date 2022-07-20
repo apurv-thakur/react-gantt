@@ -119,6 +119,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
       })}
       style={{
         transform: `translate(${translateX}px, ${translateY}px)`,
+        zIndex: 1,
       }}
       onClick={handleClick}
     >
