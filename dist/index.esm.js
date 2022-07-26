@@ -6933,31 +6933,26 @@ var Chart = function Chart() {
     strokeWidth: '1px',
     y2: '10'
   }))), minorList.map(function (item) {
-    return (
-      /*#__PURE__*/
-      // item.isWeek ? (
-      //   <g key={item.key} stroke='#f0f0f0'>
-      //     <path d={`M${item.left},0 L${item.left},${bodyScrollHeight}`} />
-      //     <rect
-      //       fill='url(#repeat)'
-      //       opacity='0.5'
-      //       strokeWidth='0'
-      //       x={item.left}
-      //       y={0}
-      //       width={item.width}
-      //       height={bodyScrollHeight}
-      //     />
-      //   </g>
-      // ) : (
-      React.createElement("g", {
-        key: item.key,
-        stroke: '#f0f0f0'
-      }, /*#__PURE__*/React.createElement("path", {
-        d: "M".concat(item.left, ",0 L").concat(item.left, ",").concat(bodyScrollHeight)
-      }))
-    );
-  } // )
-  ), /*#__PURE__*/React.createElement(DragPresent$1, null), /*#__PURE__*/React.createElement(Dependencies$1, null)), /*#__PURE__*/React.createElement("div", {
+    return item.isWeek ? /*#__PURE__*/React.createElement("g", {
+      key: item.key,
+      stroke: '#f0f0f0'
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M".concat(item.left, ",0 L").concat(item.left, ",").concat(bodyScrollHeight)
+    }), /*#__PURE__*/React.createElement("rect", {
+      fill: '#F7F7F5',
+      opacity: '0.5',
+      strokeWidth: '0',
+      x: item.left,
+      y: 0,
+      width: item.width,
+      height: bodyScrollHeight
+    })) : /*#__PURE__*/React.createElement("g", {
+      key: item.key,
+      stroke: '#f0f0f0'
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "M".concat(item.left, ",0 L").concat(item.left, ",").concat(bodyScrollHeight)
+    }));
+  }), /*#__PURE__*/React.createElement(DragPresent$1, null), /*#__PURE__*/React.createElement(Dependencies$1, null)), /*#__PURE__*/React.createElement("div", {
     className: "".concat(prefixCls, "-render-chunk"),
     style: {
       height: bodyScrollHeight,

@@ -61,27 +61,25 @@ const Chart: React.FC = () => {
             <line stroke='#c6c6c6' strokeWidth='1px' y2='10' />
           </pattern>
         </defs>
-        {minorList.map(
-          item => (
-            // item.isWeek ? (
-            //   <g key={item.key} stroke='#f0f0f0'>
-            //     <path d={`M${item.left},0 L${item.left},${bodyScrollHeight}`} />
-            //     <rect
-            //       fill='url(#repeat)'
-            //       opacity='0.5'
-            //       strokeWidth='0'
-            //       x={item.left}
-            //       y={0}
-            //       width={item.width}
-            //       height={bodyScrollHeight}
-            //     />
-            //   </g>
-            // ) : (
+        {minorList.map(item =>
+          item.isWeek ? (
+            <g key={item.key} stroke='#f0f0f0'>
+              <path d={`M${item.left},0 L${item.left},${bodyScrollHeight}`} />
+              <rect
+                fill='#F7F7F5'
+                opacity='0.5'
+                strokeWidth='0'
+                x={item.left}
+                y={0}
+                width={item.width}
+                height={bodyScrollHeight}
+              />
+            </g>
+          ) : (
             <g key={item.key} stroke='#f0f0f0'>
               <path d={`M${item.left},0 L${item.left},${bodyScrollHeight}`} />
             </g>
           )
-          // )
         )}
         <DragPresent />
         <Dependencies />
