@@ -5788,7 +5788,8 @@ var TableHeader = function TableHeader() {
     }, /*#__PURE__*/React.createElement("div", {
       className: "".concat(prefixClsTableHeader, "-head-cell")
     }, /*#__PURE__*/React.createElement("span", {
-      className: "".concat(prefixClsTableHeader, "-ellipsis")
+      className: "".concat(prefixClsTableHeader, "-ellipsis"),
+      title: column.label
     }, column.label)));
   }))));
 };
@@ -5824,7 +5825,7 @@ var RowToggler = function RowToggler(_ref) {
   })))));
 };
 
-var css_248z$d = ".gantt-table-body {\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n}\n.gantt-table-body-row,\n.gantt-table-body-border_row {\n  display: flex;\n  align-items: center;\n  position: absolute;\n  width: 100%;\n}\n.gantt-table-body-border_row {\n  height: 100%;\n  pointer-events: none;\n}\n.gantt-table-body-cell {\n  position: relative;\n  display: flex;\n  align-items: center;\n  border-right: 1px solid #f0f0f0;\n  height: 100%;\n  color: #232f3e;\n  font-weight: 700;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n          user-select: none;\n  padding: 0 8px;\n  font-size: 14px;\n}\n.gantt-table-body-ellipsis {\n  flex: 1;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.gantt-table-body-row-indentation {\n  height: 100%;\n  position: absolute;\n  left: 0;\n  pointer-events: none;\n}\n.gantt-table-body-row-indentation:before {\n  content: '';\n  position: absolute;\n  height: 100%;\n  left: 0;\n  width: 1px;\n  bottom: 0;\n  background-color: #d9e6f2;\n}\n.gantt-table-body-row-indentation-both:after {\n  content: '';\n  position: absolute;\n  width: 100%;\n  bottom: 0;\n  left: 0;\n  height: 1px;\n  background-color: #d9e6f2;\n}\n.gantt-table-body-row-indentation-hidden {\n  visibility: hidden;\n}\n";
+var css_248z$d = ".gantt-table-body {\n  position: absolute;\n  top: 0;\n  left: 0;\n  overflow: hidden;\n}\n.gantt-table-body-row,\n.gantt-table-body-border_row {\n  display: flex;\n  align-items: center;\n  position: absolute;\n  width: 100%;\n  cursor: pointer;\n}\n.gantt-table-body-border_row {\n  height: 100%;\n  pointer-events: none;\n}\n.gantt-table-body-cell {\n  position: relative;\n  display: flex;\n  align-items: center;\n  border-right: 1px solid #f0f0f0;\n  height: 100%;\n  color: #232f3e;\n  font-weight: 700;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n          user-select: none;\n  padding: 0 8px;\n  font-size: 14px;\n}\n.gantt-table-body-ellipsis {\n  flex: 1;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n.gantt-table-body-row-indentation {\n  height: 100%;\n  position: absolute;\n  left: 0;\n  pointer-events: none;\n}\n.gantt-table-body-row-indentation:before {\n  content: '';\n  position: absolute;\n  height: 100%;\n  left: 0;\n  width: 1px;\n  bottom: 0;\n  background-color: #d9e6f2;\n}\n.gantt-table-body-row-indentation-both:after {\n  content: '';\n  position: absolute;\n  width: 100%;\n  bottom: 0;\n  left: 0;\n  height: 1px;\n  background-color: #d9e6f2;\n}\n.gantt-table-body-row-indentation-hidden {\n  visibility: hidden;\n}\n";
 styleInject(css_248z$d);
 
 var TableRows = function TableRows() {
@@ -5924,7 +5925,8 @@ var TableRows = function TableRows() {
           store.setRowCollapse(bar.task, !bar._collapsed);
         }
       })), /*#__PURE__*/React.createElement("span", {
-        className: "".concat(prefixClsTableBody, "-ellipsis")
+        className: "".concat(prefixClsTableBody, "-ellipsis"),
+        title: column.render ? column.render(bar.record) : bar.record[column.name]
       }, column.render ? column.render(bar.record) : bar.record[column.name]));
     }));
   }));
@@ -6232,7 +6234,7 @@ var DragPresent = function DragPresent() {
   var leftLine = draggingType === 'left' || draggingType === 'move';
   var rightLine = draggingType === 'right' || draggingType === 'move';
   return /*#__PURE__*/React.createElement("g", {
-    fill: "#DAE0FF",
+    fill: "transparent",
     stroke: "#7B90FF"
   }, leftLine && /*#__PURE__*/React.createElement("path", {
     d: "M".concat(left, ",0 L").concat(left, ",").concat(bodyScrollHeight)

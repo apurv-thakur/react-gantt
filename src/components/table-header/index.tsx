@@ -26,7 +26,9 @@ const TableHeader: React.FC = () => {
               }}
             >
               <div className={`${prefixClsTableHeader}-head-cell`}>
-                <span className={`${prefixClsTableHeader}-ellipsis`}>{column.label}</span>
+                <span className={`${prefixClsTableHeader}-ellipsis`} title={column.label}>
+                  {column.label}
+                </span>
               </div>
             </div>
           ))}

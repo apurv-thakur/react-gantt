@@ -115,7 +115,10 @@ const TableRows = () => {
                     )}
                   </div>
                 )}
-                <span className={`${prefixClsTableBody}-ellipsis`}>
+                <span
+                  className={`${prefixClsTableBody}-ellipsis`}
+                  title={column.render ? column.render(bar.record) : bar.record[column.name]}
+                >
                   {column.render ? column.render(bar.record) : bar.record[column.name]}
                 </span>
               </div>
