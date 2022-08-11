@@ -6234,8 +6234,9 @@ var DragPresent = function DragPresent() {
   var leftLine = draggingType === 'left' || draggingType === 'move';
   var rightLine = draggingType === 'right' || draggingType === 'move';
   return /*#__PURE__*/React.createElement("g", {
-    fill: "transparent",
-    stroke: "#7B90FF"
+    fill: "#DAE0FF",
+    fillOpacity: 0,
+    stroke: store.themeColor
   }, leftLine && /*#__PURE__*/React.createElement("path", {
     d: "M".concat(left, ",0 L").concat(left, ",").concat(bodyScrollHeight)
   }), /*#__PURE__*/React.createElement("rect", {
